@@ -1,47 +1,39 @@
-# BNSF MarkLogic Project
+Adapting the style of the provided template, here's how the README for your BNSF MarkLogic Project could be structured:
 
-## Overview
+# Welcome to the BNSF MarkLogic Project Repository
 
-The BNSF MarkLogic Project is designed for the BNSF Railway Company, integrating advanced data processing capabilities using Apache NiFi. This solution emphasizes seamless connectivity with Microsoft SQL Server and MarkLogic databases, facilitated by Docker and Docker Compose for efficient deployment and streamlined management.
+This repository is dedicated to setting up and managing a data processing environment for the BNSF Railway Company, utilizing Apache NiFi along with specific extensions for connectivity to Microsoft SQL Server and MarkLogic databases. For optimal performance, it is recommended to use a system with at least 4 cores and 32GB of RAM, and a minimum of 200 GB of free hard disk space.
 
-## Project Structure
+Below is an overview of the contents available in this repository.
 
-- **`docker-compose.yml`**: Orchestrates a Docker environment with Apache NiFi and MarkLogic database instances for robust data handling.
-- **`nifi/`**: Central directory for NiFi configurations.
-  - **`Dockerfile`**: Specifies the custom Apache NiFi image, including security configurations and essential extensions.
-  - **`extensions/`**: Houses additional NiFi extensions to extend functionality.
-    - `mssql-jdbc-10.2.0.jre11.jar`: Enables Microsoft SQL Server connectivity.
-    - `nifi-marklogic-nar-1.16.3.2.nar`: Integrates NiFi with MarkLogic databases.
-    - `nifi-marklogic-services-api-nar-1.16.3.2.nar`: Provides API services for MarkLogic interactions.
+## Guides Overview
 
-## Prerequisites
+### 1. Docker Compose Setup for NiFi and MarkLogic
 
-Before you begin, ensure you have Docker and Docker Compose installed on your system.
+- **File:** [DockerCompose-NiFi-MarkLogic-Guide.md](README/DockerCompose-NiFi-MarkLogic-Guide.md)
+- This guide provides detailed instructions on using Docker Compose to orchestrate NiFi and MarkLogic services, covering the setup process, configuration, and management of services using `docker-compose` commands. It includes insights into the specific configurations defined in your `docker-compose.yml` file.
 
-## Setup and Deployment
+### 2. Importing BNSF Bookmarks into Chrome
 
-1. **Clone the Repository**: Obtain a local copy of the project repository.
-2. **Project Directory**: Navigate to the root directory of the project.
-3. **Initialize Services**:
-   ```bash
-   docker-compose up -d
-   ```
-   This command builds and starts the services in detached mode.
-4. **Access NiFi**: The NiFi web interface is available at `https://localhost:8443/nifi`.
+- **File:** [BNSF-Bookmarks-Import-Guide.md](README/BNSF-Bookmarks-Import-Guide.md)
+- This guide outlines the process for importing a set of predefined BNSF project-related bookmarks into Google Chrome, facilitating quick access to important resources and interfaces for the project.
 
-## Configuration
+### 3. Project Security Guidelines
 
-Adjust the `docker-compose.yml` file to tailor environment variables such as credentials, hostnames, and data directories to your specific needs for NiFi and MarkLogic.
+- **File:** [Project-Security-Guidelines.md](README/Project-Security-Guidelines.md)
+- Essential reading for maintaining security within the BNSF MarkLogic project. This guide covers best practices for securing Docker containers, NiFi configurations, and MarkLogic databases, including password management and network configurations.
 
-## Security Considerations
+### 4. Troubleshooting Common Issues
 
-For production environments, it's critical to replace default passwords and enhance security configurations within the `docker-compose.yml` and NiFi `Dockerfile`.
+- **File:** [Troubleshooting-Common-Issues.md](README/Troubleshooting-Common-Issues.md)
+- A helpful resource for troubleshooting common setup and deployment issues related to Docker, NiFi, and MarkLogic within the BNSF project context. This includes solutions to frequent challenges encountered during installation and operation.
 
-## Importing BNSF Bookmarks into Chrome
+## Contributing
 
-To streamline access to project resources, the `BNSF_bookmarks.html` includes essential bookmarks:
+We welcome your contributions to enhance the documentation or setup guides within this repository. Please review our contributing guidelines for detailed information on how you can contribute effectively.
 
-1. Open Chrome and navigate to the Bookmark Manager via the menu (`Bookmarks` > `Bookmark manager`).
-2. Use the manager's import function to select and open the `BNSF_bookmarks.html` from your project directory.
-3. Imported bookmarks will appear in a new "Bookmarks bar" folder, providing quick access to project-related links.
+## Contact
 
+Should you have any questions or require assistance, please do not hesitate to open an issue in this repository or contact the project maintainers directly at [roberto.garcia@bnsf.com](mailto:roberto.garcia@bnsf.com).
+
+This structured approach provides a clear, user-friendly introduction to the repository, guiding users through the available resources and how they can contribute or seek help.

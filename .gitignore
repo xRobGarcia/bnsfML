@@ -1,0 +1,16 @@
+marklogic-data-hub-central*.war
+lib/log4j.properties
+.classpath
+.project
+gradle-local.properties
+docker-compose.local.yml
+build/*
+/.tmp/*
+/.gradle/*
+logs
+.vscode/*
+.csproj.user
+.vs
+bin
+obj
+
