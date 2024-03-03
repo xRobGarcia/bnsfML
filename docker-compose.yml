@@ -29,7 +29,6 @@ services:
     ports:
       - '8000-8004:8000-8004'
       - '8010-8020:8010-8020'
-    # mem_limit: 4g
     networks:
       - bnsf-devnet
     labels:
@@ -53,7 +52,6 @@ services:
     ports:
       - '8100-8104:8000-8004'
       - '8110-8120:8010-8020'
-    # mem_limit: 4g
     networks:
       - bnsf-devnet
     labels:
@@ -81,7 +79,6 @@ services:
     ports:
       - '8200-8204:8000-8004'
       - '8210-8220:8010-8020'
-    # mem_limit: 4g
     networks:
       - bnsf-devnet
     labels:
@@ -109,7 +106,6 @@ services:
     ports:
       - '8300-8304:8000-8004'
       - '8310-8320:8010-8020'
-    # mem_limit: 4g
     networks:
       - bnsf-devnet
     labels:
