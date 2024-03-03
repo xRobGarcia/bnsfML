@@ -1,3 +1,5 @@
+[Back to Main README.md file](../../README.md)
+
 # Troubleshooting Common Issues
 
 This document provides solutions and troubleshooting steps for common issues encountered during the setup and operation of the BNSF MarkLogic Project, focusing on Docker, Apache NiFi, and MarkLogic services.
@@ -44,3 +46,5 @@ This document provides solutions and troubleshooting steps for common issues enc
 ## Conclusion
 
 Troubleshooting involves systematically diagnosing and resolving issues that arise. This guide covers common scenarios, but unique problems may require further investigation. Consult official documentation and community forums for additional insights and support.
+
+[Back to Main README.md file](../../README.md)
