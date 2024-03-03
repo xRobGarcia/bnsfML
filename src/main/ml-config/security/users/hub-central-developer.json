@@ -1,0 +1,6 @@
+{
+  "user-name": "hub-central-developer",
+  "description": "user to login at BNSF project",
+  "password": "password",
+  "role": ["hub-central-developer", "data-hub-developer", "pii-reader"]
+}
