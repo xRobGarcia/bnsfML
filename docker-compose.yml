@@ -1,0 +1,135 @@
+version: '3.8'
+
+services:
+  nifi:
+    image: bnsf/nifi:1.24.0
+    build:
+      context: ./nifi
+      args:
+        - NIFI_HOSTNAME=${NIFI_SERVER_NAME:-bnsfNifi}
+        - NIFI_USERNAME=${NIFI_USERNAME:-admin}
+        - NIFI_PASSWORD=${NIFI_PASSWORD:-adminpassword}
+    container_name: ${NIFI_CONTAINER_NAME:-nifi}
+    hostname: ${NIFI_SERVER_NAME:-bnsfNifi}
+    ports:
+      - '8443:8443'
+    volumes:
+      - ${NIFI_DATALOAD_DIR:-./build/nifi/dataload}:/opt/nifi/dataload
+    networks:
+      - bnsf-devnet
+    labels:
+      com.bnsf.app.name: ${NIFI_SERVER_NAME:-bnsfNifi}
+      com.bnsf.app.type: "nifi"
+      com.bnsf.app.description: "bnsf Apache Nifi"
+
+  marklogic1:
+    image: marklogicdb/marklogic-db:11.1.0-centos-1.1.1
+    container_name: marklogic1
+    hostname: marklogic1.local
+    ports:
+      - '8000-8004:8000-8004'
+      - '8010-8020:8010-8020'
+    # mem_limit: 4g
+    networks:
+      - bnsf-devnet
+    labels:
+      com.bnsf.app.name: "marklogic1"
+      com.bnsf.app.type: "marklogic"
+      com.bnsf.app.description: "bnsf MarkLogic Node 1"
+    environment:
+      - MARKLOGIC_INIT=true
+      - INSTALL_CONVERTERS=false
+      - MARKLOGIC_ADMIN_USERNAME=${mlUsername:-admin}
+      - MARKLOGIC_ADMIN_PASSWORD=${mlPassword:-admin}
+      - MARKLOGIC_WALLET_PASSWORD="${mlPassword:-admin}"
+      - TZ=America/Chicago
+    volumes:
+      - ./build/marklogic/data1:/var/opt/MarkLogic
+
+  marklogic2:
+    image: marklogicdb/marklogic-db:11.1.0-centos-1.1.1
+    container_name: marklogic2
+    hostname: marklogic2.local
+    ports:
+      - '8100-8104:8000-8004'
+      - '8110-8120:8010-8020'
+    # mem_limit: 4g
+    networks:
+      - bnsf-devnet
+    labels:
+      com.bnsf.app.name: "marklogic2"
+      com.bnsf.app.type: "marklogic"
+      com.bnsf.app.description: "bnsf MarkLogic Node 2"
+    environment:
+      - MARKLOGIC_INIT=true
+      - INSTALL_CONVERTERS=false
+      - MARKLOGIC_ADMIN_USERNAME=${mlUsername:-admin}
+      - MARKLOGIC_ADMIN_PASSWORD=${mlPassword:-admin}
+      - MARKLOGIC_WALLET_PASSWORD="${mlPassword:-admin}"
+      - MARKLOGIC_JOIN_CLUSTER=true
+      - MARKLOGIC_BOOTSTRAP_HOST=marklogic1.local
+      - TZ=America/Chicago
+    volumes:
+      - ./build/marklogic/data2:/var/opt/MarkLogic
+    depends_on:
+      - marklogic1
+
+  marklogic3:
+    image: marklogicdb/marklogic-db:11.1.0-centos-1.1.1
+    container_name: marklogic3
+    hostname: marklogic3.local
+    ports:
+      - '8200-8204:8000-8004'
+      - '8210-8220:8010-8020'
+    # mem_limit: 4g
+    networks:
+      - bnsf-devnet
+    labels:
+      com.bnsf.app.name: "marklogic3"
+      com.bnsf.app.type: "marklogic"
+      com.bnsf.app.description: "bnsf MarkLogic Node 3"
+    environment:
+      - MARKLOGIC_INIT=true
+      - INSTALL_CONVERTERS=false
+      - MARKLOGIC_ADMIN_USERNAME=${mlUsername:-admin}
+      - MARKLOGIC_ADMIN_PASSWORD=${mlPassword:-admin}
+      - MARKLOGIC_WALLET_PASSWORD="${mlPassword:-admin}"
+      - MARKLOGIC_JOIN_CLUSTER=true
+      - MARKLOGIC_BOOTSTRAP_HOST=marklogic1.local
+      - TZ=America/Chicago
+    volumes:
+      - ./build/marklogic/data3:/var/opt/MarkLogic
+    depends_on:
+      - marklogic1
+
+  marklogic4:
+    image: marklogicdb/marklogic-db:11.1.0-centos-1.1.1
+    container_name: marklogic4
+    hostname: marklogic4.local
+    ports:
+      - '8300-8304:8000-8004'
+      - '8310-8320:8010-8020'
+    # mem_limit: 4g
+    networks:
+      - bnsf-devnet
+    labels:
+      com.bnsf.app.name: "marklogic4"
+      com.bnsf.app.type: "marklogic"
+      com.bnsf.app.description: "bnsf MarkLogic Node 4"
+    environment:
+      - MARKLOGIC_INIT=true
+      - INSTALL_CONVERTERS=false
+      - MARKLOGIC_ADMIN_USERNAME=${mlUsername:-admin}
+      - MARKLOGIC_ADMIN_PASSWORD=${mlPassword:-admin}
+      - MARKLOGIC_WALLET_PASSWORD="${mlPassword:-admin}"
+      - MARKLOGIC_JOIN_CLUSTER=true
+      - MARKLOGIC_BOOTSTRAP_HOST=marklogic1.local
+      - TZ=America/Chicago
+    volumes:
+      - ./build/marklogic/data4:/var/opt/MarkLogic
+    depends_on:
+      - marklogic1
+
+networks:
+  bnsf-devnet:
+    name: bnsf-devnet
